@@ -45,19 +45,21 @@ jobs:
              logs at logs.txt. if needed query the db with 'sqlite3' cli. 
              if needed use mcp__playwright set of tools to launch a broswer and iteract with app.
 
-        mcp_config: |
-        {
-          "mcpServers": {
-            "playwright": {
-              "command": "npx",
-              "args": [
-                "@playwright/mcp@latest",
-                "--allowed-origins",
-                "localhost:3000;cdn.tailwindcss.com;esm.sh"
-              ]
+        
+          mcp_config: |
+            {
+              "mcpServers": {
+                "playwright": {
+                  "command": "npx",
+                  "args": [
+                    "@playwright/mcp@latest",
+                    "--allowed-origins",
+                    "localhost:3000;cdn.tailwindcss.com;esm.sh"
+                  ]
+                }
+              }
             }
-          }
-        }
 
-        allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
+
+          allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
 
