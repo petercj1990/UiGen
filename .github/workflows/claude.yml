@@ -40,11 +40,25 @@ jobs:
           additional_permissions: |
             actions: read
 
-          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
-          # prompt: 'Update the pull request description to include a summary of changes.'
+          custom_instructions: |
+             the project is already setup with all dependencies. the server is alredy running at localhost:3000. 
+             logs at logs.txt. if needed query the db with 'sqlite3' cli. 
+             if needed use mcp__playwright set of tools to launch a broswer and iteract with app.
 
-          # Optional: Add claude_args to customize behavior and configuration
-          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-          # or https://code.claude.com/docs/en/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr *)'
+          mcp_config: |
+          {
+            "mcpServers": {
+              
+                "playwright": {
+                "command": "npx",
+                "args": [
+                  "@playwright/mcp@latest",
+                  "--allowed-origins",
+                  "localhost:300;cdn.tailwindcss.com;esm.sh"
+                ]
+              }
+            }
+          }
+
+        allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
 

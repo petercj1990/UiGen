@@ -31,6 +31,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Project Setup
+        run: |
+          npm run Setup
+          npm run dev:daemon
+
       - name: Run Claude Code Review
         id: claude-review
         uses: anthropics/claude-code-action@v1
